@@ -4,7 +4,7 @@
     package="com.infinitytech.template">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- suppress DeprecatedClassUsageInspection -->
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <permission
         android:name="com.infinitytech.template.permission.MIPUSH_RECEIVE"
@@ -30,7 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -109,12 +112,16 @@
         <activity android:name=".items.mipush.MiPushActivity" />
         <activity
             android:name=".items.mipush.PermissionActivity"
-            android:theme="@style/Transparent"></activity>
+            android:theme="@style/Transparent" />
 
         <service
             android:name=".items.mipush.PushService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+        <service
+            android:name=".items.mipush.OrderService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -1,11 +1,15 @@
 package com.infinitytech.template.items.mipush
 
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.infinitytech.template.App
 import com.infinitytech.template.BaseActivity
 import com.infinitytech.template.R
+import com.infinitytech.template.utils.Channels
+import com.infinitytech.template.utils.buildHeadUpNotification
 import kotlinx.android.synthetic.main.activity_mi_push.*
 import kotlinx.android.synthetic.main.activity_permission.*
 
@@ -27,6 +31,15 @@ class MiPushActivity : BaseActivity() {
             messageTv.text = getString(BUNDLE_ARG_MESSAGE, "message")
         }
 
-        startServiceBtn.setOnClickListener { startService(Intent(this, PushService::class.java)) }
+        startServiceBtn.setOnClickListener {
+            startService(Intent(this, PushService::class.java))
+        }
+
+        headUpNotificationBtn.setOnClickListener {
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+                    .notify(0x301,
+                            buildHeadUpNotification("新的订单", "您有新的订单。",
+                                    Channels.CHANNEL_MESSAGE, 0x301))
+        }
     }
 }

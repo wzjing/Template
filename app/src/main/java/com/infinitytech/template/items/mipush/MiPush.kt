@@ -1,12 +1,10 @@
 package com.infinitytech.template.items.mipush
 
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.infinitytech.template.utils.logd
-import com.infinitytech.template.utils.loge
-import com.infinitytech.template.utils.logv
-import com.infinitytech.template.utils.startActivity
+import com.infinitytech.template.utils.*
 import com.xiaomi.mipush.sdk.*
 
 class MiPushReceiver : PushMessageReceiver() {
@@ -18,12 +16,15 @@ class MiPushReceiver : PushMessageReceiver() {
     private var mStartTime: String? = null
     private var mEndTime: String? = null
 
-    override fun onReceivePassThroughMessage(context: Context?, message: MiPushMessage?) {
-        logv("MiPush PassThroughMessage: ${message.toString()}")
-        mTopic = message?.topic
-        mAlias = message?.alias
-        // TODO: Handle this message
+    override fun onReceivePassThroughMessage(context: Context, message: MiPushMessage) {
+        logv("MiPush PassThroughMessage: $message")
+        mTopic = message.topic
+        mAlias = message.alias
         logd("PassThroughMessage: $message")
+        context.apply {
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(0x102,
+                    buildHeadUpNotification("MiPush Message", message.content, Channels.CHANNEL_MESSAGE, 0x102))
+        }
     }
 
     override fun onNotificationMessageArrived(context: Context, message: MiPushMessage) {
