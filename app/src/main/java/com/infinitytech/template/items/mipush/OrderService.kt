@@ -22,6 +22,6 @@ class OrderService : Service() {
             }
         }
 
-        return super.onStartCommand(intent, flags, startId)
+        return Service.START_STICKY
     }
 }

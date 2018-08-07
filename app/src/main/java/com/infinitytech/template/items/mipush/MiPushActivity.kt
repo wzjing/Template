@@ -10,6 +10,7 @@ import com.infinitytech.template.BaseActivity
 import com.infinitytech.template.R
 import com.infinitytech.template.utils.Channels
 import com.infinitytech.template.utils.buildHeadUpNotification
+import com.infinitytech.template.utils.sendHeadUpNotification
 import kotlinx.android.synthetic.main.activity_mi_push.*
 import kotlinx.android.synthetic.main.activity_permission.*
 
@@ -36,10 +37,8 @@ class MiPushActivity : BaseActivity() {
         }
 
         headUpNotificationBtn.setOnClickListener {
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-                    .notify(0x301,
-                            buildHeadUpNotification("新的订单", "您有新的订单。",
-                                    Channels.CHANNEL_MESSAGE, 0x301))
+            sendHeadUpNotification("MiPush", "Message content", Channels.CHANNEL_MESSAGE,
+                    0x110, 20000)
         }
     }
 }

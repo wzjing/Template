@@ -15,6 +15,21 @@ enum class Channels(val channelId: String, val channelName: String) {
     CHANNEL_BACKGROUND_TASK("channel_background_task", "Background Task")
 }
 
+fun Context.sendHeadUpNotification(title: String,
+                                   message: String,
+                                   channel: Channels,
+                                   notificationId: Int,
+                                   lastTimeMillis: Long) {
+    (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(notificationId,
+            buildHeadUpNotification(title, message, channel, notificationId))
+    (getSystemService(Context.ALARM_SERVICE) as AlarmManager).set(AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis() + lastTimeMillis,
+            PendingIntent.getService(this, 0x312,
+                    Intent(this, OrderService::class.java)
+                            .putExtra("notification_id", notificationId),
+                    PendingIntent.FLAG_UPDATE_CURRENT))
+}
+
 fun Context.buildHeadUpNotification(title: String,
                                     message: String,
                                     channel: Channels,
@@ -44,13 +59,13 @@ fun Context.buildHeadUpNotification(title: String,
             Intent(this, MainActivity::class.java),
             PendingIntent.FLAG_UPDATE_CURRENT))
 
-    builder.addAction(R.drawable.ic_edit, "取消",
+    builder.addAction(R.drawable.ic_order_pass, "取消",
             PendingIntent.getService(this, 0x312,
                     Intent(this, OrderService::class.java)
                             .putExtra("notification_id", notificationId),
                     PendingIntent.FLAG_UPDATE_CURRENT))
 
-    builder.addAction(R.drawable.ic_edit, "接单",
+    builder.addAction(R.drawable.ic_order_accept, "接单",
             PendingIntent.getService(this, 0x313,
                     Intent(this, OrderService::class.java)
                             .putExtra("notification_id", notificationId),

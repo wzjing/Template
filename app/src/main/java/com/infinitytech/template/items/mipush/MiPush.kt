@@ -21,10 +21,8 @@ class MiPushReceiver : PushMessageReceiver() {
         mTopic = message.topic
         mAlias = message.alias
         logd("PassThroughMessage: $message")
-        context.apply {
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(0x102,
-                    buildHeadUpNotification("MiPush Message", message.content, Channels.CHANNEL_MESSAGE, 0x102))
-        }
+        context.sendHeadUpNotification("MiPush Message", message.content, Channels.CHANNEL_MESSAGE,
+                0x110, 5000)
     }
 
     override fun onNotificationMessageArrived(context: Context, message: MiPushMessage) {
