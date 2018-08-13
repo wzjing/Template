@@ -17,6 +17,7 @@ class App : Application() {
         private val APP_ID = "2882303761517845363"
         private val APP_KEY = "5501784572363"
         private val MIPUSH_TAG = "MiPush"
+        public var isDebug = BuildConfig.DEBUG
 
         public fun reInitMiPush(context: Context){
             MiPushClient.registerPush(context.applicationContext, APP_ID, APP_KEY)

@@ -36,6 +36,8 @@ class MiPushActivity : BaseActivity() {
             startService(Intent(this, PushService::class.java))
         }
 
+        stopServiceBtn.setOnClickListener { PushService.stopService(this) }
+
         headUpNotificationBtn.setOnClickListener {
             sendHeadUpNotification("MiPush", "Message content", Channels.CHANNEL_MESSAGE,
                     0x110, 20000)

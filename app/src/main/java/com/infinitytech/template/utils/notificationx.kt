@@ -50,6 +50,7 @@ fun Context.buildHeadUpNotification(title: String,
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
     builder.setVibrate(longArrayOf(0L, 1000L, 1000L))
     builder.setSound(Uri.parse("android.resource://$packageName/${R.raw.notify_sound}"))
+    builder.priority = NotificationCompat.PRIORITY_HIGH
     builder.setFullScreenIntent(
             PendingIntent.getActivity(this, 0x311,
                     Intent(this, MainActivity::class.java),
@@ -87,7 +88,7 @@ inline fun <reified T : Activity> Context.buildServiceNotification(title: String
     builder.setContentTitle(title)
     builder.setContentText(content)
     builder.setVisibility(NotificationCompat.VISIBILITY_SECRET)
-    builder.priority = NotificationCompat.PRIORITY_MIN
+    builder.priority = NotificationCompat.PRIORITY_LOW
     builder.setVibrate(longArrayOf())
     builder.setSound(null)
     val pIntent = PendingIntent.getActivity(this, 0x312,

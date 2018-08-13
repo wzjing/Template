@@ -1,9 +1,6 @@
 package com.infinitytech.template.items.mipush
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Binder
@@ -17,7 +14,25 @@ import com.infinitytech.template.utils.minApi
 
 class PushService : Service() {
 
-    private var runSignal: Boolean = true
+    companion object {
+        var runSignal: Boolean = true
+        fun stopService(context: Context) {
+            val af = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            af.getRunningServices(100).forEach {
+                if (it.service.className.contains(PushService::class.java.simpleName)) {
+                    logd("""
+                        ClientPackage: ${it.clientPackage}
+                        ClassName:     ${it.service.className}
+                        Process:       ${it.process}
+                        Foreground:    ${it.foreground}
+                        Running:       ${it.started}
+                        """)
+                }
+
+            }
+        }
+    }
+
     private val NOTIFICATION_ID = 0x101
 
     override fun onBind(intent: Intent): IBinder {
