@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.1"
+    buildToolsVersion "28.0.2"
     defaultConfig {
         applicationId "com.infinitytech.template"
         minSdkVersion 21
@@ -33,24 +33,6 @@ android {
         }
     }
 
-    productionFlavors{
-        def platform = 'platform'
-        flaverDimensions platform
-        phone {
-            defaultConfig{
-
-            }
-            dimension platform
-        }
-
-        bigPhone{
-            dimension platform
-        }
-
-        tablet {
-            dimension platform
-        }
-    }
 }
 
 dependencies {
@@ -58,7 +40,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.24.0'
     implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'

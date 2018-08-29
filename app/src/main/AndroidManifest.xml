@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- suppress DeprecatedClassUsageInspection -->
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <permission
         android:name="com.infinitytech.template.permission.MIPUSH_RECEIVE"
@@ -122,6 +122,8 @@
             android:name=".items.mipush.OrderService"
             android:enabled="true"
             android:exported="true" />
+
+        <activity android:name=".items.RecyclerViewActivity"></activity>
     </application>
 
 </manifest>

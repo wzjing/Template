@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "title": "Zeus",
+      "description": "Zeus is the God of all in Greece"
+    },
+    {
+      "title": "Odin",
+      "description": "Odin is the all father"
+    },
+    {
+      "title": "Thor",
+      "description": "Thor is the God of Thunder"
+    },
+    {
+      "title": "Fury",
+      "description": "Nick Fury is the boss of Shield"
+    },
+    {
+      "title": "Iron Man",
+      "description": "Tony Stark is the only Iron Man"
+    },
+    {
+      "title": "Captain America",
+      "description": "Captain can fight any enemy"
+    }
+  ]
+}
